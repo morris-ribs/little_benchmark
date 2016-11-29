@@ -5,13 +5,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    """Default endpoint"""
     return "Hello, World!"
 
-if __name__ == '__main__':
-    app.run(debug=True)
 
 @app.route('/bombhere', methods=['POST'])
-def handle_bombs():
+def bombhere():
     """Handles the POST requests"""
     if not request.json:
         return 400
@@ -22,3 +21,7 @@ def handle_bombs():
         'DummyDate': request.json['DummyDate']
     }
     return jsonify({'dummyinfo': dummyinfo}), 200
+
+
+if __name__ == '__main__':
+    app.run()
